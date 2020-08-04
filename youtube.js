@@ -1,7 +1,7 @@
 registerPlugin({
-    name: 'Youtube Search',
+    name: 'Youtube',
     version: '1.3.4',
-    engine: '>= 1.0.0',
+    engine: '>= 0.9.8',
     backends: ["ts3", "discord"],
     description: 'Youtube video search',
     author: 'NT5',
@@ -327,6 +327,7 @@ registerPlugin({
             options.callback = options.callback || function (err, res) { engine.log(res); };
             options.error_callback = options.error_callback || function (err, res) { engine.log(err); };
 
+            const http = require("http")
             http.simpleRequest({
                 method: options.method,
                 url: options.url,
@@ -336,8 +337,8 @@ registerPlugin({
                 if (err || res.statusCode !== 200) {
                     engine.log('Request error [{error}] Code: [{code}] Data: [{data}]'.format({
                         error: err,
-                        data: res.data,
-                        code: res.statusCode
+                        code: res.statusCode,
+                        data: res.data
                     }));
                     options.error_callback(err);
                 } else {
