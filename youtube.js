@@ -327,7 +327,6 @@ registerPlugin({
             options.callback = options.callback || function (err, res) { engine.log(res); };
             options.error_callback = options.error_callback || function (err, res) { engine.log(err); };
 
-            const http = require("http")
             http.simpleRequest({
                 method: options.method,
                 url: options.url,
