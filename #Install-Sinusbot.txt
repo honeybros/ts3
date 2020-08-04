@@ -1,0 +1,82 @@
+// Updates 
+apt-get update
+apt-get install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 libnss3 libegl1-mesa x11-xkb-utils libasound2 libpci3 libxslt1.1 libxkbcommon0 curl
+apt-get install libglib2.0-0
+update-ca-certificates   
+
+
+// Install Sinusbot
+
+adduser sinusbot1
+
+mkdir -p /opt/sinusbot1
+
+chown -R sinusbot1:sinusbot1 /opt/sinusbot1
+
+cd /opt/sinusbot1
+
+su sinusbot1
+
+wget https://github.com/mooflukeza/ts3/raw/master/sinusbot.current.tar.bz2
+
+tar -xjf sinusbot.current.tar.bz2
+
+wget http://dl.4players.de/ts/releases/3.1.10/TeamSpeak3-Client-linux_amd64-3.1.10.run
+
+chmod 0755 TeamSpeak3-Client-linux_amd64-3.1.10.run
+
+./TeamSpeak3-Client-linux_amd64-3.1.10.run
+
+cp config.ini.dist config.ini
+
+nano config.ini  #fix ts3client path
+
+rm TeamSpeak3-Client-linux_amd64/xcbglintegrations/libqxcb-glx-integration.so
+
+mkdir TeamSpeak3-Client-linux_amd64/plugins
+
+cp plugin/libsoundbot_plugin.so TeamSpeak3-Client-linux_amd64/plugins/
+
+chmod 0755 sinusbot
+
+
+./sinusbot
+
+
+// install youtube dll
+
+su root
+
+sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+
+sudo chmod a+rx /usr/local/bin/youtube-dl
+
+fix uputube-dl path
+
+/usr/local/bin/youtube-dl
+
+// Start Bot
+Note :- if you in another user please || su root || first 
+
+su root
+
+screen -S bot
+
+su sinusbot1
+
+cd /opt/sinusbot
+./sinusbot --override-password=a8f6dd1d
+
+Note :- To Turn Off Screen Mode  :- CTRL + A + D
+
+// Stop Bot
+
+screen -ls
+
+kill pid
+rm /tmp/.sinusbot.lock
+rm -rf /tmp/.X11-unix/X40
+
+
+
+
