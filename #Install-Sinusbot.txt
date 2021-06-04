@@ -64,7 +64,7 @@ screen -S bot
 
 su sinusbot1
 
-cd /opt/sinusbot
+cd /opt/sinusbot1
 ./sinusbot --override-password=a8f6dd1d
 
 Note :- To Turn Off Screen Mode  :- CTRL + A + D
@@ -77,6 +77,13 @@ kill pid
 rm /tmp/.sinusbot.lock
 rm -rf /tmp/.X11-unix/X40
 
+
+sudo apt-get update
+sudo apt-get install python
+cd / opt / sinusbot /
+curl -L -O https://github.com/ytdl-org/youtube-dl/releases/download/2021.01.16/youtube-dl
+chmod a + rx youtube-dl
+chown sinusbot: sinusbot youtube-dl
 
 
 
